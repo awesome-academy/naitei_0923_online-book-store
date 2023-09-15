@@ -35,4 +35,8 @@ class Book extends Model
     {
         return $this->hasMany(Media::class);
     }
+    public function carts()
+    {
+        return $this->hasMany(Cart::class);
+    }
 }

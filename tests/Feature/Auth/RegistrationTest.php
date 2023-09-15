@@ -22,10 +22,14 @@ class RegistrationTest extends TestCase
     public function testNewUsersCanRegister()
     {
         $role = Role::create([
+            'id' => 1,
+            'name' => 'admin',
+        ]);
+        $role = Role::create([
             'id' => 2,
             'name' => 'user',
         ]);
-        $response = $this->withHeaders(['accept'=>'application/json'])->post('/register', [
+        $response = $this->withHeaders(['accept' => 'application/json'])->post('/register', [
             'first_name' => 'Test',
             'last_name' => 'User',
             'phone' => '1111111111',

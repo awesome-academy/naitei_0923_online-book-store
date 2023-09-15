@@ -22,15 +22,17 @@ class AuthenticationTest extends TestCase
     public function testUsersCanAuthenticateUsingTheLoginScreen()
     {
         $role = Role::create([
-            'id' => 1,
-            'name' => 'Na',
+            'id' => 2,
+            'name' => 'user',
         ]);
         $user = User::factory()->create();
 
-        $response = $this->post('/login', [
+        $response = $this->withHeaders(['accept' => 'application/json'])->post('/login', [
             'email' => $user->email,
-            'password' => 'password',
+            'password' => '123456789',
         ]);
+
+        $response->dump();
 
         $this->assertAuthenticated();
         $response->assertRedirect(RouteServiceProvider::HOME);
@@ -40,7 +42,11 @@ class AuthenticationTest extends TestCase
     {
         $role = Role::create([
             'id' => 1,
-            'name' => 'Na',
+            'name' => 'admin',
+        ]);
+        $role = Role::create([
+            'id' => 2,
+            'name' => 'user',
         ]);
         $user = User::factory()->create();
 

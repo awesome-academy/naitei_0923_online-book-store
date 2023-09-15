@@ -15,8 +15,13 @@ class PasswordConfirmationTest extends TestCase
     {
         $role = Role::create([
             'id' => 1,
-            'name' => 'Na',
+            'name' => 'admin',
         ]);
+        $role = Role::create([
+            'id' => 2,
+            'name' => 'user',
+        ]);
+
         $user = User::factory()->create();
 
         $response = $this->actingAs($user)->get('/confirm-password');
@@ -27,14 +32,15 @@ class PasswordConfirmationTest extends TestCase
     public function testPasswordCanBeConfirmed()
     {
         $role = Role::create([
-            'id' => 1,
-            'name' => 'Na',
+            'id' => 2,
+            'name' => 'user',
         ]);
         $user = User::factory()->create();
 
-        $response = $this->actingAs($user)->post('/confirm-password', [
-            'password' => 'password',
+        $response = $this->withHeaders(['accept' => 'application/json'])->actingAs($user)->post('/confirm-password', [
+            'password' => '123456789',
         ]);
+        $response->dump();
 
         $response->assertRedirect();
         $response->assertSessionHasNoErrors();
@@ -44,7 +50,11 @@ class PasswordConfirmationTest extends TestCase
     {
         $role = Role::create([
             'id' => 1,
-            'name' => 'Na',
+            'name' => 'admin',
+        ]);
+        $role = Role::create([
+            'id' => 2,
+            'name' => 'user',
         ]);
         $user = User::factory()->create();
 
