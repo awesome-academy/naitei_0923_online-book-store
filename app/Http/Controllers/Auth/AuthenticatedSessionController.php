@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Models\Role;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -31,6 +32,16 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
+
+        $adminRole = Role::where('name', 'admin')->first();
+        
+        if ($adminRole) {
+            $adminRoleId = $adminRole->id();
+
+            if ($adminRole && auth()->check() && auth()->user()->role_id == $adminRoleId) {
+                return redirect()->to('/books');
+            }
+        }
 
         return redirect()->intended(RouteServiceProvider::HOME);
     }

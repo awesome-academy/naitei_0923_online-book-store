@@ -50,7 +50,7 @@
                 <div class="flex flex-col justify-between text-center">
                     <div class="flex flex-col justify-between h-24">
                         <a href="books/{{$book->id}}" class="font-bold text-xl mb-2">{{ $book->name }}</a>
-                        <p class="text-gray-700 text-base">Rating: {{ number_format($book->average_rating, 1) }}</p>
+                        <p class="text-gray-700 text-base">{{ __('Rating') }} {{ number_format($book->average_rating, 1) }}</p>
                         <p class="text-gray-700 text-lg text-red-600 font-semibold">$ {{ $book->price }}</p>
                     </div>
                     <form class="add-to-cart-form" data-book-id="{{ $book->id }}">

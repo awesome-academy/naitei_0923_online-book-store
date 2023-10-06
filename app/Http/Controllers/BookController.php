@@ -55,7 +55,7 @@ class BookController extends Controller
             'publisher_year' => $request->input('publisher_year'),
             'author' => $request->input('author'),
             'page_nums' => $request->input('page_nums'),
-            'stock' => '0',
+            'stock' => $request->input('stock')
         ]);
 
         $book->save();
@@ -135,6 +135,7 @@ class BookController extends Controller
             'publisher_year' => $request->publisher_year,
             'author' => $request->author,
             'page_nums' => $request->page_nums,
+            'stock' => $request->stock
         ]);
 
         $book->categories()->sync($request->category);

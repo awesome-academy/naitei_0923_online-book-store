@@ -21,7 +21,7 @@
             @include('layouts.navigation')
 
             <!-- Sidebar -->
-            <aside class="bg-gray-800 text-white w-48 min-h-screen fixed">
+            <aside class="bg-gray-800 text-white w-48 min-h-screen fixed top-16">
                 <!-- Sidebar Content Goes Here -->
                 <div class="p-4">
                     <!-- Sidebar Logo -->
@@ -43,7 +43,7 @@
                 </div>
             </aside>
 
-            <div class="max-w-full" style="display:inline-block;padding-left:220px;width:100vw;">
+            <div class="max-w-full pt-16" style="display:inline-block;padding-left:220px;width:100vw;">
                 <!-- Page Heading -->
                 <header class="bg-white shadow max-w-full">
                     <div class="max-w-full mx-auto py-6 px-4 sm:px-6 lg:px-8">
